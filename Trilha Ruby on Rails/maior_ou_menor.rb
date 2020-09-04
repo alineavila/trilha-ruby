@@ -35,9 +35,12 @@ end
 
 da_boas_vindas
 numero_secreto = sorteia_numero_secreto
+chutes = []
 
 limiteDeTentativas = 3
 for tentativa in 1..limiteDeTentativas
-    chute = pede_um_numero tentativa, limiteDeTentativas 
+    chute = pede_um_numero tentativa, limiteDeTentativas
+    chutes << chute
+    puts "Chutes até agora: #{chutes}"
     break if verifica_se_acertou numero_secreto, chute 
 end
