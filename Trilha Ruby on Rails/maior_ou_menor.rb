@@ -11,26 +11,33 @@ def sorteia_numero_secreto
     puts "Escolhido... que tal adivinhar hoje nosso número secreto?" + "\n\n" 
     return sorteado   
 end
+def pede_um_numero(tentativa, limiteDeTentativas)
+    puts "Tentativa " + tentativa.to_s + " de " + limiteDeTentativas.to_s
+    puts "Entre com o número"
+    chute = gets
+    puts "Será que acertou? Você chutou " + chute
+    chute.to_i
+end
+def verifica_se_acertou(numero_secreto, chute)
+    acertou = numero_secreto == chute
+    if acertou
+        puts "Acertou!"
+        return true
+    end
+    maior = numero_secreto > chute
+    if maior 
+        puts "O número secreto é maior!"
+    else 
+        puts "O número secreto é menor!"
+    end
+    false
+end
 
 da_boas_vindas
 numero_secreto = sorteia_numero_secreto
 
 limiteDeTentativas = 3
 for tentativa in 1..limiteDeTentativas
-    puts "Tentativa " + tentativa.to_s + " de " + limiteDeTentativas.to_s
-    puts "Entre com o número"
-    chute = gets
-    puts "Será que acertou? Você chutou " + chute
-    acertou = numero_secreto == chute.to_i
-    if acertou
-        puts "Acertou!"
-        break
-    else
-        maior = numero_secreto > chute.to_i
-        if maior 
-            puts "O número secreto é maior!"
-        else 
-            puts "O número secreto é menor!"
-        end
-    end
+    chute = pede_um_numero tentativa, limiteDeTentativas 
+    break if verifica_se_acertou numero_secreto, chute 
 end
